@@ -9,7 +9,9 @@ export const GetMessages = async (req, res) => {
 
         res.send({
             success: true,
-            data: result.data,
+            data: {
+                result: result.data?.result || []
+            }
         })
     } catch (error) {
         return res.send({
