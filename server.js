@@ -105,9 +105,9 @@ io.on("connection", (socket) => {
                     },
 
                 }).then(response => {
-    console.log(\"Telegram success:\", response.data);
+    console.log("Telegram success:", response.data);
 }).catch(error => {
-    console.error(\"Telegram error:\", error.message);
+    console.error("Telegram error:", error.message);
 })
         }
     });
